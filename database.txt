@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS User ( 
+user_id int AUTO_INCREMENT,
+username varchar(20),
+CONSTRAINT user_pk
+PRIMARY KEY (user_id)  
+);
+
+
+CREATE TABLE IF NOT EXISTS Answer(
+    answer_id int AUTO_INCREMENT,
+    survey_id int,
+    user_id int,
+    rating int,
+    CONSTRAINT answer_pk
+    PRIMARY KEY (answer_id),
+    CONSTRAINT survey_fk
+    FOREIGN KEY (survey_id) REFERENCES Survey(survey_id),
+    FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+
+
+CREATE TABLE IF NOT EXISTS Survey(
+	survey_id int AUTO_INCREMENT,
+	survey_title varchar(20),
+	question varchar(20),
+	user_id int,
+	CONSTRAINT survey_pk
+	PRIMARY KEY (survey_id),
+	CONSTRAINT user_fk
+	FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
+    
